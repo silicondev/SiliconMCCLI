@@ -1,0 +1,4 @@
+io\github\silicondev\siliconmccli\Result.class
+io\github\silicondev\siliconmccli\Handler.class
+io\github\silicondev\siliconmccli\CLICommand.class
+io\github\silicondev\siliconmccli\ICLIOutput.class

@@ -1,25 +1,28 @@
 package io.github.silicondev.siliconmccli;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-public class Handler {
-	public boolean Handle(String command, CommandSender sender, List<CLICommand> listedCommands, char commandSplit) {
-		List<String> splittedCommands = Arrays.asList(command.split(String.valueOf(commandSplit)));
+public class Handler implements CommandExecutor {
+	
+	private List<CLICommand> _commands;
+	
+	public Handler(List<CLICommand> listedCommands) {
+		_commands = listedCommands;
+	}
+
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		
-		if (splittedCommands.size() > 0 && listedCommands.size() > 0) {
-			List<String> args = new ArrayList<String>();
-			args.addAll(splittedCommands);
-			
-			for (CLICommand cmd : listedCommands) {
-				if (cmd.Input.equalsIgnoreCase(splittedCommands.get(0))) {
-					Result res = cmd.Run(sender, args);
-					if (res.Valid)
-						return res.Success;
-					
-				}
+		for (CLICommand cmd : _commands) {
+			if (cmd.Input.equalsIgnoreCase(command.getName())) {
+				Result res = cmd.Run(sender, Arrays.asList(args));
+				if (res.Valid)
+					return res.Success;
 			}
 		}
 		

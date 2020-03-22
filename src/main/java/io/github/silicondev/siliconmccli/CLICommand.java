@@ -29,19 +29,22 @@ public class CLICommand {
 	
 	public Result Run(CommandSender sender, List<String> args) {
 		
-		List<String> useArgs = new ArrayList<String>();
-		useArgs.addAll(args);
-		useArgs.remove(0);
-		
-		if (!Children.isEmpty() && !useArgs.isEmpty()) {
-			for (CLICommand child : Children) {
-				if (child.Input.equalsIgnoreCase(useArgs.get(0))) {
-					return child.Run(sender, useArgs);
+		if (args.isEmpty()) 
+			return new Result(true, Output.Run(sender));
+		else {
+			if (Children.isEmpty())
+				return new Result(true, Output.Run(sender, args));
+			else {
+				for (CLICommand child : Children) {
+					if (child.Input.equalsIgnoreCase(args.get(0))) {
+						List<String> childArgs = new ArrayList<String>();
+						childArgs.addAll(args);
+						childArgs.remove(0);
+						return child.Run(sender, childArgs);
+					}
 				}
+				return new Result(false, false);
 			}
-			return new Result(false, false);
-		} else {
-			return new Result(true, Output.Run(sender, useArgs));
 		}
 	}
 }

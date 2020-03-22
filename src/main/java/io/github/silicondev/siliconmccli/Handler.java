@@ -31,7 +31,7 @@ public class Handler implements CommandExecutor {
 				argString += str + " ";
 			}
 			
-			sender.sendMessage("[SiliconMCCLI] Received command input: " + command.getName() + argString.trim());
+			sender.sendMessage("[SiliconMCCLI] Received command input: " + command.getName() + " " + argString.trim());
 		}
 		
 		for (CLICommand cmd : _commands) {

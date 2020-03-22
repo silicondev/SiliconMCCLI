@@ -30,7 +30,7 @@ public class CLICommand {
 	public Result Run(CommandSender sender, List<String> args) {
 		
 		if (args.isEmpty()) 
-			return new Result(true, Output.Run(sender));
+			return new Result(true, Output.Run(sender, new ArrayList<String>()));
 		else {
 			if (Children.isEmpty())
 				return new Result(true, Output.Run(sender, args));

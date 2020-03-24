@@ -30,10 +30,10 @@ public class CLICommand {
 	public Result Run(CommandSender sender, List<String> args) {
 		
 		if (args.isEmpty()) 
-			return new Result(true, Output.Run(sender, new ArrayList<String>()));
+			return Output.Run(sender, new ArrayList<String>());
 		else {
 			if (Children.isEmpty())
-				return new Result(true, Output.Run(sender, args));
+				return Output.Run(sender, args);
 			else {
 				for (CLICommand child : Children) {
 					if (child.Input.equalsIgnoreCase(args.get(0))) {

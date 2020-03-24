@@ -41,7 +41,7 @@ public class Handler implements CommandExecutor {
 			if (cmd.Input.equalsIgnoreCase(command.getName())) {
 				Result res = cmd.Run(sender, Arrays.asList(args));
 				if (res.Valid) {
-					if (!res.Success) {
+					if (!res.Success && !res.Silent) {
 						sender.sendMessage("[" + _pluginName + "] Syntax error.");
 					}
 					return true;

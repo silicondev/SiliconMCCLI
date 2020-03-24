@@ -2,22 +2,22 @@
 <metadata modelVersion="1.1.0">
   <groupId>io.github.silicondev</groupId>
   <artifactId>SiliconMCCLI</artifactId>
-  <version>0.0.5-SNAPSHOT</version>
+  <version>0.0.6-SNAPSHOT</version>
   <versioning>
     <snapshot>
       <localCopy>true</localCopy>
     </snapshot>
-    <lastUpdated>20200322173000</lastUpdated>
+    <lastUpdated>20200324185946</lastUpdated>
     <snapshotVersions>
       <snapshotVersion>
         <extension>jar</extension>
-        <value>0.0.5-SNAPSHOT</value>
-        <updated>20200322173000</updated>
+        <value>0.0.6-SNAPSHOT</value>
+        <updated>20200324185946</updated>
       </snapshotVersion>
       <snapshotVersion>
         <extension>pom</extension>
-        <value>0.0.5-SNAPSHOT</value>
-        <updated>20200322173000</updated>
+        <value>0.0.6-SNAPSHOT</value>
+        <updated>20200324185946</updated>
       </snapshotVersion>
     </snapshotVersions>
   </versioning>

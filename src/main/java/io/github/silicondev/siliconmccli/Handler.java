@@ -11,12 +11,15 @@ public class Handler implements CommandExecutor {
 	
 	private List<CLICommand> _commands;
 	private boolean _debug = false;
+	private String _pluginName;
 	
-	public Handler(List<CLICommand> commands) {
+	public Handler(String pluginName, List<CLICommand> commands) {
+		_pluginName = pluginName;
 		_commands = commands;
 	}
 	
-	public Handler(List<CLICommand> commands, boolean debug) {
+	public Handler(String pluginName, List<CLICommand> commands, boolean debug) {
+		_pluginName = pluginName;
 		_commands = commands;
 		_debug = debug;
 	}
@@ -31,14 +34,18 @@ public class Handler implements CommandExecutor {
 				argString += str + " ";
 			}
 			
-			sender.sendMessage("[SiliconMCCLI] Received command input: " + command.getName() + " " + argString.trim());
+			sender.sendMessage("[" + _pluginName + "] Received command input: " + command.getName() + " " + argString.trim());
 		}
 		
 		for (CLICommand cmd : _commands) {
 			if (cmd.Input.equalsIgnoreCase(command.getName())) {
 				Result res = cmd.Run(sender, Arrays.asList(args));
-				if (res.Valid)
-					return res.Success;
+				if (res.Valid) {
+					if (!res.Success) {
+						sender.sendMessage("[" + _pluginName + "] Syntax error.");
+					}
+					return true;
+				}
 			}
 		}
 		
